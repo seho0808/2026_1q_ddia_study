@@ -54,14 +54,14 @@ chapter{번호}/{이름}
 ### 커밋 메시지
 
 ```
-[chapterXX] 커밋 내용
+[chapterXX/이름] 커밋 내용
 ```
 
 **예시:**
 
-- `[chapter01] 요약 및 정리 작성`
-- `[chapter01] 딥다이브 문서 추가`
-- `[chapter03] 오타 수정`
+- `[chapter01/이세호] 요약 및 정리 작성`
+- `[chapter01/홍길동] 딥다이브 문서 추가`
+- `[chapter03/seho] 오타 수정`
 
 ### PR 컨벤션
 
