@@ -81,8 +81,6 @@ Domain load parameter
 
 Load Parameter: 쿼리 결과 집합 크기
 
-~~- x축: 쿼리당 매칭 문서 수 | y축: 해당 문서 수를 반환하는 쿼리 빈도~~
-
 QPS는 비교적 안정적일 때
 
 - "apple" → 수십억 문서
@@ -97,11 +95,11 @@ QPS는 비교적 안정적일 때
 
 “같은 QPS라도 매칭 문서 수가 1,000배 차이 난다”
 
+power-law / log-normal 그래프 - x축: 쿼리당 매칭 문서 수 | y축: 해당 문서 수를 반환하는 쿼리 확률(빈도)
+
 #### Netflix / Youtuber 스트리밍
 
 Load Parameter: 동시 시청자 수 (per content)
-
-~~- x축: 콘텐츠당 동시 시청자 수 | y축: 해당 시청자 수를 가진 콘텐츠 수~~
 
 - 사용자 수 ❌
 - 업로드 수 ❌
@@ -116,11 +114,11 @@ Load Parameter: 동시 시청자 수 (per content)
 
 “부하는 ‘사람 수’가 아니라 같은 영상을 동시에 보는 사람 수”
 
+power-law 그래프 / log-normal - x축: 콘텐츠당 동시 시청자 수 | y축: 해당 시청자 수를 가진 콘텐츠 수
+
 #### WhatsApp / Slack
 
 Load Parameter: 메시지당 수신자 수 (Group Size)
-
-~~- x축: 그룹/채널 크기 (수신자 수) | y축: 해당 크기의 그룹 수~~
 
 - 1:1 메시지 → O(1)
 - 10명 그룹 → O(10)
@@ -142,11 +140,11 @@ QPS는 같아도:
 
 “메시징 시스템의 부하는 메시지 수가 아니라 수신자 수다”
 
+power-law 그래프 / log-normal - x축: 그룹/채널 크기 (수신자 수) | y축: 해당 크기의 그룹 수
+
 #### Amazon DynamoDB / Aurora
 
 Load Parameter: 파티션 키 접근 분포 (Key Hotness)
-
-~~- x축: 키 접근 빈도 순위 (1위 = 가장 많이 접근되는 키) | y축: 해당 키의 접근 횟수~~
 
 - 전체 QPS는 낮아도 하나의 hot key가 파티션 하나를 죽임
 - order_id = 123 → 30% 트래픽 집중
@@ -159,6 +157,8 @@ Load Parameter: 파티션 키 접근 분포 (Key Hotness)
 - Write sharding (key salting)
 
 “부하는 요청 수가 아니라 키 접근 분포의 왜도(skew) 다”
+
+power-law 그래프 / log-normal - x축: 키 접근 빈도 순위 (1위 = 가장 많이 접근되는 키) | y축: 해당 키의 접근 횟수
 
 ## 죄다 예시들이 로그/지수 분포인데, 다 그런건가?
 
