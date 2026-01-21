@@ -1,0 +1,35 @@
+{
+  "name": "toon-poc",
+  "version": "1.0.0",
+  "description": "TOON Format POC - Token efficiency and accuracy benchmark",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node --loader ts-node/esm src/index.ts",
+    "dev": "tsx src/index.ts",
+    "benchmark": "tsx src/index.ts"
+  },
+  "keywords": [
+    "toon",
+    "json",
+    "benchmark",
+    "llm",
+    "token-efficiency"
+  ],
+  "author": "정순재",
+  "license": "MIT",
+  "dependencies": {
+    "@toon-format/toon": "^2.1.0",
+    "dotenv": "^16.4.7",
+    "js-yaml": "^4.1.0",
+    "openai": "^4.77.3",
+    "tiktoken": "^1.0.18"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.10.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

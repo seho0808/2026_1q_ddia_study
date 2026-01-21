@@ -1,0 +1,1 @@
+[{"id":1,"name":"Product 1","description":"Perfect for everyday use with modern design and functionality. Item #1 offers great value.","price":25.5,"category":"Clothing","inStock":true,"tags":["new","popular"]}]
