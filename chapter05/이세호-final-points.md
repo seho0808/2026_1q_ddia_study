@@ -1,3 +1,55 @@
+## 계층지도
+
+```
+분산 데이터베이스 (Distributed Database)
+├── [목적] 왜 분산하는가?
+│   ├── 가용성 (Availability) ─────────────────── 복제 ✓
+│   ├── 지연 시간 감소 (Latency) ──────────────── 복제 ✓
+│   ├── 읽기 처리량 (Read Throughput) ─────────── 복제 ✓
+│   ├── 쓰기 처리량 (Write Throughput) ────────── 샤딩 ✓
+│   └── 저장 용량 확장 (Storage Scale-out) ────── 샤딩 ✓
+│
+├── [전략 1] 복제 (Replication) - Ch.5
+│   │   "같은 데이터를 여러 노드에 복사"
+│   │
+│   ├── 아키텍처 유형
+│   │   ├── 단일 리더 (Single-Leader)
+│   │   │   ├── 장점: 일관성 보장 쉬움, 이해 단순
+│   │   │   ├── 단점: 리더가 SPOF, 쓰기 병목
+│   │   │   └── 장애 복구: Failover (리더 재선출)
+│   │   │
+│   │   ├── 다중 리더 (Multi-Leader)
+│   │   │   ├── 장점: 지리적 분산, 오프라인 작업
+│   │   │   ├── 단점: 쓰기 충돌 해결 필요
+│   │   │   └── 토폴로지: 원형, 별, 전체 연결
+│   │   │
+│   │   └── 리더 없음 (Leaderless / Dynamo-style)
+│   │       ├── 장점: 높은 가용성, Failover 불필요
+│   │       ├── 단점: 충돌 감지/해결 복잡
+│   │       └── 핵심: 정족수 (Quorum) w + r > n
+│   │
+│   ├── 동기화 방식
+│   │   ├── 동기식 (Synchronous): 일관성↑ 가용성↓
+│   │   ├── 비동기식 (Asynchronous): 가용성↑ 일관성↓
+│   │   └── 반동기식 (Semi-sync): 1개만 동기 + 나머지 비동기
+│   │
+│   ├── 복제 로그 구현
+│   │   ├── 구문 기반 (Statement): 단순하지만 비결정적
+│   │   ├── WAL 전송: 물리적, 버전 호환 어려움
+│   │   └── 논리적/행 기반: 버전 독립적, CDC 용이
+│   │
+│   ├── 복제 지연 문제 (Replication Lag)
+│   │   ├── Read-your-writes: 내가 쓴 건 내가 본다
+│   │   ├── Monotonic Reads: 시간 역행 방지
+│   │   └── Consistent Prefix Reads: 인과 순서 보장
+│   │
+│   └── 충돌 해결 (Conflict Resolution)
+│       ├── 회피 (Avoidance): 같은 리더로 라우팅
+│       ├── LWW (Last Write Wins): 최신만 남김 (유실 위험)
+│       ├── 수동: Siblings 저장 후 사용자 선택
+│       └── 자동: CRDT, OT (데이터 유실 없는 병합)
+```
+
 ## final Qs
 
 - 복제를 사용하는 5가지 주요 목적은 무엇인가?
