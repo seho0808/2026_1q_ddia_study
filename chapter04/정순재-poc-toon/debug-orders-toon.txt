@@ -1,0 +1,10 @@
+[1]:
+  - orderId: 1
+    userId: 1
+    userName: User1
+    items[2]{productId,productName,quantity,price}:
+      1,Product 1,1,30
+      2,Product 2,2,40
+    totalAmount: 110
+    status: processing
+    orderDate: "2024-02-01T15:00:00.000Z"
