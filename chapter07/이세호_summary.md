@@ -274,6 +274,17 @@ NoSQL 등에서 단일 객체 연산만 제공하기도 하지만, 다음과 같
 
 두 클라이언트가 동시에 데이터를 읽고 수정하여 다시 쓸 때, 나중에 쓴 값이 먼저 쓴 값을 덮어써서 **먼저 수행된 수정 사항이 사라지는 현상**입니다. (예: 카운터 증가, 위키 페이지 동시 수정)
 
+id name age version
+1223 seho 27 1
+
+tx1
+id name age version
+1223 seho 28 2
+
+tx2
+id name age version
+1223 seho 37 2
+
 ### 2) 해결 방안
 
 #### ① 원자적 쓰기 연산 (Atomic Write Operations)

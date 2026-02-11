@@ -1,32 +1,26 @@
 ## 정리
 
-개요
-
-- 트랜잭션 핵심 개념
-- 트랜잭션의 역사
-- ACID
-
-격리 수준
-
-- Read Uncommited
-  - dirty read
-- Read Commited
-  - no dirty reads과 구현 방식 1가지
-  - no dirty writes과 구현 방식 2가지
-  - 읽기 스큐
-- Repeatable Read
-  - 스냅숏 격리
-  - 쓰기 스큐
-  - 팬텀 리드
-- Serializable
-  - 실제 순차 실행 구현 방법 3가지와 차이점
+- 개요
+  - 트랜잭션 핵심 개념
+  - 트랜잭션의 역사
+  - ACID
+- 격리 수준
+  - Read Uncommited
+    - dirty read
+  - Read Commited
+    - no dirty reads과 구현 방식 1가지
+    - no dirty writes과 구현 방식 2가지
+    - 읽기 스큐
+  - Repeatable Read
+    - 스냅숏 격리
+    - 쓰기 스큐
+    - 팬텀 리드
+  - Serializable
+    - 실제 순차 실행 구현 방법 3가지와 차이점
 - 분산 트랜잭션
-
   - 2PC
   - XA
-
-- 기타
-  - 갱신 분실의 해결 방법 4가지
+- 기타 -갱신 분실의 해결 방법 4가지
 
 ## disclaimer
 
@@ -34,3 +28,15 @@
 - **PostgreSQL:** 스냅숏 격리를 **"Repeatable Read"**라고 부릅니다.
 - **Oracle:** 스냅숏 격리를 **"Serializable"**이라고 부릅니다.
 - **결론:** 사용하는 DB의 공식 문서에서 해당 격리 수준이 실제로 어떤 보장을 제공하는지 반드시 확인해야 합니다.
+
+## 실무에서 제일 중요한 구간 (스터디원분들을 위해)
+
+- ACID가 무엇인지, 트랜잭션 개념과의 관계 제대로 인지하기
+- 각 격리 수준이 무엇을 해결하는지
+- Postgresql과 Mysql 각 기본 격리수준이랑 실제로 트랜잭션 사용해도 이슈 생기는 구간 이해하기
+- 후반 찹터들에 나온다고하지만, 어플리케이션 락과 로그 기반 어플리케이션 분산 트랜잭션도 이해해야함.
+  - outbox pattern + SAGA => MSA
+    - ++추가 개념: cadence / temproal
+  - redis 분산락잡음
+    - 매우 강력함. => db가 아닌 모든 것에 묶어서 락을 걸 수 있음.
+- Serializable은 안쓰는 기업이 많았음. => 이건 실무적으로 제가 경험이 부족해서 모르긴하지만 대규모 트래픽에서 많이 비효율적이라서 안쓴다고하네요. (과거 토스, 네이버, 무신사 5년+ 개발자들 5명 이상에게 들었음)
